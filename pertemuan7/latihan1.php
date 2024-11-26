@@ -16,6 +16,13 @@ $mahasiswa = [
             "Tugas" => [90,95,100],
             "gambar" => "roket.png"
             ],
+                [
+                    "nama" => "Royhan",
+                    "NIP" => "23868459",
+                    "Gmail" => "jatih@gmail.chindo",
+                    "Jurusan" => "Teknik Manipulasi",
+                    "gambar" => "bumi2.png"
+                    ]
 
 ];
 ?>
