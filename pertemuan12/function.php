@@ -37,7 +37,7 @@ function hapus($id) {
 }
 
 
-function update($data,$id) {
+function update($data, $id) {
     global $conn;
 
     // $id = $data["id"];
@@ -59,5 +59,24 @@ function update($data,$id) {
     // mysqli_query($conn, "UPDATE FROM human WHERE id = $id");
     return mysqli_affected_rows($conn);
 }
-?>
 
+
+function cari($keyword) {
+    
+    $query = "SELECT * FROM human
+                 WHERE
+            name LIKE '%$keyword%' OR
+            nrp LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%' 
+                 ";
+    return query($query);
+}
+
+if (isset($_POST["cari"]) && !empty($_POST["keyword"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}    
+
+
+
+?>

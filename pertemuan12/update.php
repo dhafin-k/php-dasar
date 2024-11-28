@@ -5,17 +5,17 @@ $mahasiswa = query("SELECT * FROM human WHERE id=$id");
 // var_dump($mahasiswa);
 // Jangan lupa menambahkan Require untuk Terkoneksi
 if(isset($_POST["submit"]) ) {
-    if (update($_POST ,$id) > 0) {
-        echo "<script>
+    if (update($_POST, $id) > 0) {
+        echo "<script> 
                 alert('data Berhasil diubah!');
                 document.location.href = 'index.php';
              </script>
              ";
     }else {
-        echo "<scrit>
+        echo "<script>
                 alert('data Gagal diubah!');
                 document.location.href = 'index.php';
-             </scrit>";
+             </script>";
     }
 }
 
@@ -102,7 +102,7 @@ if(isset($_POST["submit"]) ) {
 <h1>Tambah Data Mahasiswa</h1>
 
 <form action="" method="post">
-    <input type="hidden" name="id" value="<?= $mhs['$mhs']; ?>">
+    <!-- <input type="hidden" name="id" value="<?= $mahasiswa['id']; ?>"> -->
     <ul>
         <li>
             <label for="nrp">NRP : </label>
