@@ -130,6 +130,39 @@ if (isset($_POST["cari"]) && !empty($_POST["keyword"])) {
     $mahasiswa = cari($_POST["keyword"]);
 }    
 
+function registrasi($data) {
+    global $conn;
 
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn,$data["password"]);
+    $password2 = mysqli_real_escape_string($conn,$data["password2"]);
+    // cekk username sudah ada atau belum
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+    if(mysqli_fetch_assoc($result ) ) {
+        echo "<script>
+            alert('username sudah terdaftar')
+            </script>";
+        return false;
+    }
+
+    // Cek konsfirmasi Password 
+    if( $password !== $password2 ) {
+        echo "<script>
+            alert('Password Tidak Sesuai!')
+        </script>";
+        return false;
+    }
+    // enkripsi Password
+    $password = password_hash($password, PASSWORD_DEFAULT); 
+    // $password= md5($password);
+
+
+    // Tambahkan Userbaru ke databases
+    $query = "INSERT INTO user VALUES(null,'$username', '$password')";
+    mysqli_query($conn,  $query);
+    
+    return mysqli_affected_rows($conn);
+
+}
 
 ?>
